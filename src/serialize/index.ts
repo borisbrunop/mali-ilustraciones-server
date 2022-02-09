@@ -1,0 +1,6 @@
+export {default as cities} from './cities'
+export {default as  frames} from './frames'
+export {default as menus} from './menus'
+export {default as photos} from './photos'
+export {default as variables} from './variables'
+export {default as galleryComponents} from './galleryComponents'
