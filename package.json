@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "concurrently \"tsc --w\"  \"nodemon build/index.js\"",
-    "test": "tsc && node build/utils/findPageName.js"
+    "test": "tsc && node build/utils/findPageName.js",
+    "start": "node build/index.js"
   },
   "keywords": [],
   "author": "",
