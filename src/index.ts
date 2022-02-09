@@ -3,9 +3,12 @@ import 'dotenv/config'
 import get, { getComponents } from './services/notion'
 import findPageName from './utils/findPageName'
 import {databases} from './const/databases'
+var cors = require('cors');
+
 
 
 const app = express();
+app.use(cors());
 
 // var databases = require('./const/databases');
 const port = process.env.PORT || 5400
