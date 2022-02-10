@@ -36,7 +36,9 @@ require("dotenv/config");
 const notion_1 = __importStar(require("./services/notion"));
 const findPageName_1 = __importDefault(require("./utils/findPageName"));
 const databases_1 = require("./const/databases");
+var cors = require('cors');
 const app = (0, express_1.default)();
+app.use(cors());
 // var databases = require('./const/databases');
 const port = process.env.PORT || 5400;
 // app.get('/all', async (req, res) => {
