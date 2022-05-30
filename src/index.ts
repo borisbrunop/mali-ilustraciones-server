@@ -1,8 +1,13 @@
 import express from "express";
 import 'dotenv/config'
-import get, { getComponents } from './services/notion'
+import get, { getComponents, getProducts } from './services/notion'
 import findPageName from './utils/findPageName'
+<<<<<<< HEAD
+import {databases} from './const/databases'
+import serialize from "./utils/serialize";
+=======
 import { databases } from './const/databases'
+>>>>>>> 3834846af8acaf1926fad7cbf1d0f75fb39da29f
 var cors = require('cors');
 
 var allowedOrigins = ['http://localhost:3000',
@@ -27,7 +32,12 @@ const port = process.env.PORT || 5400
 // })
 
 app.get('/:name', async (req, res) => {
+<<<<<<< HEAD
+    // console.log('PARAMS HERE', req.params.name)
+    try{
+=======
     try {
+>>>>>>> 3834846af8acaf1926fad7cbf1d0f75fb39da29f
         const response = await get(req.params.name, 'POST');
         const name = findPageName(req.params.name)
         console.info(`get database ${name} 200 response status`)
@@ -43,6 +53,16 @@ app.get(`/${databases.PHOTOS}/:key`, async (req, res) => {
         console.info(`get database ${name} ${req.params.key} 200 response status`)
         res.json(response)
     } catch (e) {
+        console.error(e)
+    }
+})
+app.get(`/${databases.PRODUCTS}/:key`, async (req, res) => {
+    try{
+        const response = await getProducts(databases.PRODUCTS, req.params.key);
+        const name = findPageName(databases.PHOTOS)
+        console.info(`get database ${name} by categories 200 response status`)
+        res.json(response[0] ? response : {message: 'Esta Categoria no tiene Productos', code: 404})
+    }catch(e){
         console.error(e)
     }
 })

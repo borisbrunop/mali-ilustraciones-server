@@ -17,7 +17,7 @@ function serialize(results, database, key) {
         if (database === databases_1.databases.FRAMES) {
             return (0, serialize_1.frames)(results);
         }
-        else if (database === databases_1.databases.VARIABLES) {
+        else if (database === databases_1.databases.PRODUCTS) {
             return (0, serialize_1.variables)(results);
         }
         else if (database === databases_1.databases.PHOTOS) {

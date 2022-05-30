@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "compiler": "tsc -w",
+    "watch": "nodemon build/index.js",
     "dev": "concurrently \"tsc --w\"  \"nodemon build/index.js\"",
     "test": "tsc && node build/utils/findPageName.js",
     "start": "node build/index.js"

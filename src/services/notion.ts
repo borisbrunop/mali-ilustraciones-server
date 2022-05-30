@@ -28,3 +28,32 @@ export async function getComponents(database: string | undefined, method: string
 
     return serialize(results, key, key)
 } 
+export async function getProducts(database: string | undefined, filters: string){
+    const payload = {
+        database_id: database,
+        filter: {
+          or: [
+            {
+              property: 'Categories',
+              multi_select: {
+                contains: filters,
+              },
+            }
+          ],
+        },
+        sorts: [
+          {
+            property: 'order',
+            direction: 'ascending',
+          },
+        ],
+      }
+
+    const {results} = await notion.databases.query(payload);
+
+    // console.log('RESPONSE', results)
+
+    // const {results} = await notion.request(payload)
+
+    return serialize(results, database)
+} 
