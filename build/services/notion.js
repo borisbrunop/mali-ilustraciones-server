@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getComponents = void 0;
+exports.getProducts = exports.getComponents = void 0;
 // const serialize = require("../utils/serialize");
 const serialize_1 = __importDefault(require("../utils/serialize"));
 const { Client } = require("@notionhq/client");
@@ -41,3 +41,31 @@ function getComponents(database, method, key) {
     });
 }
 exports.getComponents = getComponents;
+function getProducts(database, filters) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const payload = {
+            database_id: database,
+            filter: {
+                or: [
+                    {
+                        property: 'Categories',
+                        multi_select: {
+                            contains: filters,
+                        },
+                    }
+                ],
+            },
+            sorts: [
+                {
+                    property: 'order',
+                    direction: 'ascending',
+                },
+            ],
+        };
+        const { results } = yield notion.databases.query(payload);
+        // console.log('RESPONSE', results)
+        // const {results} = await notion.request(payload)
+        return (0, serialize_1.default)(results, database);
+    });
+}
+exports.getProducts = getProducts;
