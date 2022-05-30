@@ -53,6 +53,7 @@ const port = process.env.PORT || 5400;
 //     }
 // })
 app.get('/:name', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // console.log('PARAMS HERE', req.params.name)
     try {
         const response = yield (0, notion_1.default)(req.params.name, 'POST');
         const name = (0, findPageName_1.default)(req.params.name);
@@ -69,6 +70,17 @@ app.get(`/${databases_1.databases.PHOTOS}/:key`, (req, res) => __awaiter(void 0,
         const name = (0, findPageName_1.default)(databases_1.databases.PHOTOS);
         console.info(`get database ${name} ${req.params.key} 200 response status`);
         res.json(response);
+    }
+    catch (e) {
+        console.error(e);
+    }
+}));
+app.get(`/${databases_1.databases.PRODUCTS}/:key`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield (0, notion_1.getProducts)(databases_1.databases.PRODUCTS, req.params.key);
+        const name = (0, findPageName_1.default)(databases_1.databases.PHOTOS);
+        console.info(`get database ${name} by categories 200 response status`);
+        res.json(response[0] ? response : { message: 'Esta Categoria no tiene Productos', code: 404 });
     }
     catch (e) {
         console.error(e);

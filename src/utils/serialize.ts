@@ -5,7 +5,7 @@ import {frames, menus, variables, photos, cities, galleryComponents} from '../se
 export default async function serialize (results: any[], database: string | undefined, key?: string){
     if(database === databases.FRAMES){
         return frames(results)
-    }else if(database === databases.VARIABLES){
+    }else if(database === databases.PRODUCTS){
         return variables(results)
     }else if(database === databases.PHOTOS){    
         return photos(results)
